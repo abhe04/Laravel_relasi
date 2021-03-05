@@ -50,3 +50,28 @@ Route::get('/create_user_profile', function() {
 
     return $user;
 });
+
+Route::get('/read_user', function () {
+    $user = User::find(1);
+
+    $data = [
+        'name' => $user->name,
+        'phone' => $user->profile->phone,
+        'address' => $user->profile->address
+    ];
+
+    return $data;
+});
+
+Route::get('read_profile', function () {
+    $profile = Profile::where('phone', '0892123124151')->first();
+
+    $data = [
+        'name' => $profile->user->name,
+        'email' => $profile->user->email,
+        'phone' => $profile->phone,
+        'address' => $profile->address
+    ];
+
+    return $data;
+});
