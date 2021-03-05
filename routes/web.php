@@ -86,3 +86,10 @@ Route::get('/update_profile', function () {
 
     return $user;
 });
+
+Route::get('/delete_profile', function () {
+    $user = User::find(2);
+    $user->profile()->delete();
+
+    return $user;
+});
