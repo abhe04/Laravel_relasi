@@ -63,7 +63,7 @@ Route::get('/read_user', function () {
     return $data;
 });
 
-Route::get('read_profile', function () {
+Route::get('/read_profile', function () {
     $profile = Profile::where('phone', '0892123124151')->first();
 
     $data = [
@@ -74,4 +74,15 @@ Route::get('read_profile', function () {
     ];
 
     return $data;
+});
+
+Route::get('/update_profile', function () {
+    $user = User::find(2);
+
+    $user->profile()->update([
+        'phone' => '0895325237',
+        'address' => 'Jl. Inovasi, No. 23'
+    ]);
+
+    return $user;
 });
