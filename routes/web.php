@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 use App\User;
 use App\Profile;
+use App\Post;
 
 Route::get('/create_user', function() {
     $user = User::create([
@@ -109,4 +110,14 @@ Route::get('/read_posts', function () {
     }
 
     return $data;
+});
+
+Route::get('/read_category', function() {
+    $post = Post::find(1);
+
+    $categories = $post->categories;
+    foreach ($categories as $category) {
+        echo $category->slug . '<br/>';
+        echo $category->category . '<br/>';
+    }
 });
