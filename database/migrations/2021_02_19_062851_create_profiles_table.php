@@ -16,8 +16,8 @@ class CreateProfilesTable extends Migration
         Schema::dropIfExists('profiles');
         Schema::create('profiles', function (Blueprint $table) {
             //struktur tabel Profile
-            $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('phone');
             $table->text('address');

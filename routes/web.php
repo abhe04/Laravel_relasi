@@ -93,3 +93,20 @@ Route::get('/delete_profile', function () {
 
     return $user;
 });
+
+Route::get('/read_posts', function () {
+    $user = User::find(1);
+
+    $posts = $user->posts()->get();
+
+    foreach ($posts as $post) {
+        $data[] = [
+            'name' => $post->user['name'],
+            'post_id' => $post->id,
+            'title' => $post->title,
+            'body' => $post->body
+        ];
+    }
+
+    return $data;
+});
